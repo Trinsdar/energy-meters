@@ -139,6 +139,20 @@ public class TileEntityEnergyMeterEU extends TileEntityEnergyMeterBase {
   public boolean canEmitEnergy(EnumFacing side) {
     return side == this.outputSide;
   }
+  
+  @Override
+  public void setInputSide(@Nullable EnumFacing side) {
+    this.removeFromEnergyNet();
+    super.setInputSide(side);
+    this.addToEnergyNet();
+  }
+
+  @Override
+  public void setOutputSide(@Nullable EnumFacing side) {
+    this.removeFromEnergyNet();
+    super.setOutputSide(side);
+    this.addToEnergyNet();
+  }
 
   /**
    * Unused in EU meters since the calculation is done in {@link #update()} instead.
